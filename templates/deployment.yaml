@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name | default "metrics-app-deployment" }}
+  namespace: {{ .Values.namespace | default "metrics-app-prod" }}
+  labels:
+    app: {{ .Values.appName | default "metrics-app" }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName | default "metrics-app" }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName | default "metrics-app" }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.container.name | default "metrics-app-container" }}
+          image: {{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag }} | default "latest" }}
+          imagePullPolicy: {{ .Values.deployment.container.imagePullPolicy | default "Always" }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.deployment.container.containerPort | default 8080 }}
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: {{ .Values.deployment.secretName | default "metrics-app-secret" }}

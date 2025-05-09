@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name | default "metrics-app" }}
+  namespace: {{ .Values.namespace | default "metrics-app-prod" }}
+  labels:
+    app: {{ .Values.appName | default "metrics-app" }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host | default "metrics-app.prod.cloudraft.com" }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.ingress.serviceName | default "metrics-app" }}
+                port:
+                  number: {{ .Values.ingress.servicePort | default 8080 }}

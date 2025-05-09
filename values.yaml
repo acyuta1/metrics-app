@@ -10,6 +10,8 @@ deployment:
       tag: 1.1
   secretName: metrics-app-secret
 
+ingress:
+  name: metrics-app
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:

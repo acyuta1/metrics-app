@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.deployment.container.name | default "metrics-app-container" }}
-          image: {{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag }} | default "latest" }}
+          image: {{ .Values.deployment.container.image.repository }}:{{ .Values.deployment.container.image.tag | default "latest" }}
           imagePullPolicy: {{ .Values.deployment.container.imagePullPolicy | default "Always" }}
           ports:
             - name: http

@@ -24,4 +24,4 @@ service:
 secret:
   name: "metrics-app-secret"
   data:
-    METRICS_APP_PASSWORD: ""
+    METRICS_APP_PASSWORD: "dummy"

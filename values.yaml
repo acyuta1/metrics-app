@@ -2,20 +2,20 @@ appName: metrics-app
 replicaCount: 1
 
 deployment:
-  name: metrics-app-deployment
+  name: "metrics-app-deployment"
   container:
-    name: metrics-app-container
+    name: "metrics-app-container"
     image:
-      repository: ghcr.io/cloudraftio/metrics-app
-      tag: 1.1
-  secretName: metrics-app-secret
+      repository: "ghcr.io/cloudraftio/metrics-app"
+      tag: "1.1"
+  secretName: "metrics-app-secret"
 
 ingress:
-  name: metrics-app
+  name: "metrics-app"
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
-  name: metrics-app
+  name: "metrics-app"
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
